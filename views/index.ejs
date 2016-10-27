@@ -4,17 +4,41 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>YODAFY</title>
-  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <h2>Search song</h2>
+  <div>
+    <h2>Search song</h2>
     <form action="/search" method="POST">
       <input type="text" name="searchTerm" placeholder="Enter an Song">
       <input type="submit" value="Search">
     </form>
+  </div>
+  <div class="results-container">
+    <h3>Search results</h3>
+      <ul>
+        <% songs.forEach((song) => { %>
+          <li>
+            <p>Title: <%= song.track.track_name %></p>
+            <p>Artist: <%= song.track.artist_name %></p>
+            <p>Album: <%= song.track.album_name %></p>
+            <form action="/lyrics" method="POST">
+              <input type="hidden" name="selectSong" value="<%= song.track.track_id %>">
+              <input type="submit" value="Get Lyrics">
+            </form>
+          </li>
+        <% }); %>
+      </ul>
+  </div>
 
+  <div class="lyrics-container">
+    <h3> Song Lyrics </h3>
+    <p> <%= results.message.body.lyrics.lyrics_body %> </p>
+  </div>
 
-  <h3> Song Lyrics </h3>
-  <div><%= results.message.body.lyrics.lyrics_body %></div>
+  <div class="yoda-container">
+    <h3> Yodafy Lyrics </h3>
+    <p> render yoda lyrics here</p>
+  </div>
 </body>
 </html>

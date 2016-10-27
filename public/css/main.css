@@ -1,0 +1,29 @@
+/*.lyrics-box {
+  width: 200px;
+  height: 700px;
+  t
+}*/
+
+.results-container {
+  border: 2px solid blue;
+  display: inline-block;
+  width: 25vw;
+  height: 50vh;
+  overflow: auto;
+}
+
+.lyrics-container {
+  border: 2px solid blue;
+  display: inline-block;
+  width: 25vw;
+  height: 50vh;
+  overflow: auto;
+}
+
+.yoda-container {
+  border: 2px solid blue;
+  display: inline-block;
+  width: 25vw;
+  height: 50vh;
+  overflow: auto;
+}

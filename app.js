@@ -9,7 +9,8 @@ const path           = require('path');
 const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
 
-const { getLyrics }  = require('./services/musixmatch');
+const { searchSongs,
+        getLyrics }  = require('./services/musixmatch');
 
 const app            = express();
 const PORT           = process.argv[2] || process.env.PORT || 3000;
@@ -28,9 +29,26 @@ app.use(methodOverride('_method'));
 
 /* ------------------------ */
 
-app.get('/', getLyrics, (req, res) => {
+app.get('/', searchSongs, getLyrics, (req, res) => {
   // res.json(res.results);
   res.render('index', {
+    songs: res.songs || [],
     results: res.results,
   });
 });
+
+app.post('/search', searchSongs, getLyrics, (req, res) => {
+  // console.log(res.results);
+  res.render('index', {
+    songs: res.songs || [],
+    results: res.results,
+  });
+});
+
+// app.get('/lyrics', getLyrics, (req, res) => {
+//   console.log(res.results);
+//   // res.json(res.results);
+//   // res.render('index', {
+//   //   results: res.results,
+//   // });
+// });
