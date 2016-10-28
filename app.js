@@ -11,6 +11,7 @@ const methodOverride = require('method-override');
 
 const { searchSongs,
         getLyrics }  = require('./services/musixmatch');
+const { yodaSpeak }  = require('./services/yoda');
 
 const app            = express();
 const PORT           = process.argv[2] || process.env.PORT || 3000;
@@ -19,9 +20,9 @@ app.listen(PORT, () => console.warn('server up and running on port', PORT));
 
 app.use(logger('dev'));
 
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.set('view engine', 'ejs');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -29,26 +30,39 @@ app.use(methodOverride('_method'));
 
 /* ------------------------ */
 
-app.get('/', searchSongs, getLyrics, (req, res) => {
+app.get('/', (req, res) => {
   // res.json(res.results);
   res.render('index', {
     songs: res.songs || [],
-    results: res.results,
+    results: res.results || [],
+    yoda: res.yoda || [],
   });
 });
 
-app.post('/search', searchSongs, getLyrics, (req, res) => {
+app.post('/search', searchSongs, (req, res) => {
   // console.log(res.results);
   res.render('index', {
     songs: res.songs || [],
-    results: res.results,
+    results: res.results || [],
+    yoda: res.yoda || [],
   });
 });
 
-// app.get('/lyrics', getLyrics, (req, res) => {
-//   console.log(res.results);
-//   // res.json(res.results);
-//   // res.render('index', {
-//   //   results: res.results,
-//   // });
-// });
+app.post('/lyrics', getLyrics, (req, res) => {
+  // console.log(res.results);
+  // res.json(res.results);
+  res.render('index', {
+    songs: res.songs || [],
+    results: res.results || [],
+    yoda: res.yoda || [],
+  });
+});
+
+app.post('/yoda', yodaSpeak, (req, res) => {
+  // res.json(res.yoda);
+  res.render('index', {
+    songs: res.songs || [],
+    results: res.results || [],
+    yoda: res.yoda || [],
+  });
+});

@@ -3,6 +3,24 @@
   height: 700px;
   t
 }*/
+@font-face {
+    font-family: myFont;
+    src: url(/assets/Star_Rounded.ttf);
+}
+
+html {
+  background: url(/assets/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+header {
+  color: white;
+  text-align: center;
+  font-family: myFont;
+}
 
 .results-container {
   border: 2px solid blue;

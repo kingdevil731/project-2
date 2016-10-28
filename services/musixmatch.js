@@ -19,11 +19,11 @@ function searchSongs(req, res, next) {
 
 
 function getLyrics(req, res, next) {
-  // fetch(`${APP_URL}track.lyrics.get?track_id=${req.body.selectSong}&apikey=${APP_ID}`)
-  fetch(`${APP_URL}track.lyrics.get?track_id=15953433&apikey=${APP_ID}`)
+  fetch(`${APP_URL}track.lyrics.get?track_id=${req.body.selectSong}&apikey=${APP_ID}`)
+  // fetch(`${APP_URL}track.lyrics.get?track_id=15953433&apikey=${APP_ID}`)
   .then(r => r.json())
   .then((result) => {
-    res.results = result;
+    res.results = result.message.body.lyrics;
     next();
   })
   .catch((err) => {
