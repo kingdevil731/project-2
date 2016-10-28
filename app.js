@@ -8,7 +8,6 @@ const logger         = require('morgan');
 const path           = require('path');
 const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
-
 const { searchSongs,
         getLyrics }  = require('./services/musixmatch');
 const { yodaSpeak }  = require('./services/yoda');
@@ -32,7 +31,7 @@ app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => {
   // res.json(res.results);
-  res.render('index', {
+  res.render('app', {
     songs: res.songs || [],
     results: res.results || [],
     yoda: res.yoda || [],
@@ -41,7 +40,7 @@ app.get('/', (req, res) => {
 
 app.post('/search', searchSongs, (req, res) => {
   // console.log(res.results);
-  res.render('index', {
+  res.render('app', {
     songs: res.songs || [],
     results: res.results || [],
     yoda: res.yoda || [],
@@ -51,7 +50,7 @@ app.post('/search', searchSongs, (req, res) => {
 app.post('/lyrics', getLyrics, (req, res) => {
   // console.log(res.results);
   // res.json(res.results);
-  res.render('index', {
+  res.render('app', {
     songs: res.songs || [],
     results: res.results || [],
     yoda: res.yoda || [],
@@ -60,7 +59,7 @@ app.post('/lyrics', getLyrics, (req, res) => {
 
 app.post('/yoda', yodaSpeak, (req, res) => {
   // res.json(res.yoda);
-  res.render('index', {
+  res.render('app', {
     songs: res.songs || [],
     results: res.results || [],
     yoda: res.yoda || [],
