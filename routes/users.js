@@ -4,9 +4,9 @@ const express            = require('express');
 
 const { createUser }     = require('../models/user.js');
 const { authenticate }   = require('../lib/auth');
+const { yodaSpeak }      = require('../services/yoda');
 const { searchSongs,
         getLyrics }      = require('../services/musixmatch');
-const { yodaSpeak }      = require('../services/yoda');
 
 const usersRouter        = express.Router();
 

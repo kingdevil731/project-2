@@ -1,3 +1,6 @@
+/* eslint no-multi-spaces: ["error", { exceptions: { "VariableDeclarator": true } }] */
+/* eslint no-param-reassign: ["error", { "props": false }] */
+
 const { ObjectID } = require('mongodb');
 const { getDB }    = require('../lib/dbConnect.js');
 
@@ -24,7 +27,7 @@ function saveFavorite(req, res, next) {
   const insertObj = {};
 
   // copying all of req.body into insertObj
-  for(key in req.body) {
+  for (key in req.body) {
     insertObj[key] = req.body[key];
   }
 
@@ -56,9 +59,13 @@ function deleteFavorites(req, res, next) {
         db.close();
         next();
       });
-      return false;
+    return false;
   });
   return false;
 }
 
-module.exports = { getFavorites, saveFavorite, deleteFavorites };
+module.exports = {
+  getFavorites,
+  saveFavorite,
+  deleteFavorites,
+};

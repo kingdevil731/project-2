@@ -92,6 +92,7 @@ header form {
 textarea {
   font-size: 15px;
   background: transparent;
+  outline: none;
   color: white;
   border: none;
 }

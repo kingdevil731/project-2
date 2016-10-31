@@ -18,7 +18,7 @@
 
   <div class="nav">
     <h2>Search song</h2>
-    <form action="/search" method="POST">
+    <form action="/users/search" method="POST">
       <input type="text" name="searchTerm" placeholder="Enter an song title">
       <input type="submit" value="Search">
     </form>
@@ -33,22 +33,22 @@
 
 
     <div class="results-container">
-          <% songs.forEach((song) => { %>
-            <div class="result-card">
-              <p><strong>Title:</strong> <%= song.track.track_name %></p>
-              <p><strong>Artist:</strong> <%= song.track.artist_name %></p>
-              <p><strong>Album:</strong> <%= song.track.album_name %></p>
-              <form action="/lyrics" method="POST">
-                <input type="hidden" name="selectSong" value="<%= song.track.track_id %>">
-                <input type="submit" value="Get Lyrics">
-              </form>
-            </div>
-          <% }); %>
+      <% songs.forEach((song) => { %>
+        <div class="result-card">
+          <p><strong>Title:</strong> <%= song.track.track_name %></p>
+          <p><strong>Artist:</strong> <%= song.track.artist_name %></p>
+          <p><strong>Album:</strong> <%= song.track.album_name %></p>
+          <form action="/users/lyrics" method="POST">
+            <input type="hidden" name="selectSong" value="<%= song.track.track_id %>">
+            <input type="submit" value="Get Lyrics">
+          </form>
+        </div>
+      <% }); %>
     </div>
 
     <div class="lyrics-container">
       <textarea rows="23" cols="40" name="yodafy" form="lyrics-form"><%= results.lyrics_body %></textarea>
-      <form action="/yoda" method="POST" id="lyrics-form">
+      <form action="/users/yoda" method="POST" id="lyrics-form">
         <input type="submit" value="Yodafy Lyrics">
       </form>
     </div>
