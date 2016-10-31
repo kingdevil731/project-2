@@ -30,6 +30,10 @@ header {
   font-family: swOutline;
 }
 
+header form {
+  float: right;
+}
+
 .nav {
   /*border: 1px solid green;*/
   color: white;
@@ -88,6 +92,7 @@ header {
 textarea {
   font-size: 15px;
   background: transparent;
+  outline: none;
   color: white;
   border: none;
 }
