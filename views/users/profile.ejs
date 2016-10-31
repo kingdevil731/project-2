@@ -4,12 +4,16 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>YODAFY</title>
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<h1>Welcome! <%= user.username %></h1>
+
   <header>
     <h1>yodafy</h1>
+    <h6>Welcome! <%= user.username %></h6>
+    <form action="/auth?_method=DELETE" method="post">
+      <input type="submit" value="Logout">
+    </form>
   </header>
 
   <div class="nav">
@@ -61,8 +65,5 @@
     </div>
 
   </div>
-  <form action="/auth?_method=DELETE" method="post">
-      <input type="submit" value="Logout">
-    </form>
 </body>
 </html>
