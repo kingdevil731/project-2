@@ -8,11 +8,14 @@ const logger         = require('morgan');
 const path           = require('path');
 const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
-const { searchSongs,
-        getLyrics }  = require('./services/musixmatch');
-const { yodaSpeak }  = require('./services/yoda');
+const session         = require('express-session');
+const cookieParser    = require('cookie-parser');
+const indexRouter     = require('./routes/index.js');
+const authRouter      = require('./routes/auth');
+const usersRouter     = require('./routes/users');
 
 const app            = express();
+const SECRET          = 'tacos3000';
 const PORT           = process.argv[2] || process.env.PORT || 3000;
 
 app.listen(PORT, () => console.warn('server up and running on port', PORT));
@@ -27,41 +30,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(methodOverride('_method'));
 
+app.use(bodyParser.json());
+
+app.use(cookieParser());
+
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret: SECRET
+}));
+
+app.use('/', indexRouter);
+app.use('/auth', authRouter);
+app.use('/users', usersRouter);
+
 /* ------------------------ */
 
-app.get('/', (req, res) => {
-  // res.json(res.results);
-  res.render('app', {
-    songs: res.songs || [],
-    results: res.results || [],
-    yoda: res.yoda || [],
-  });
-});
 
-app.post('/search', searchSongs, (req, res) => {
-  // console.log(res.results);
-  res.render('app', {
-    songs: res.songs || [],
-    results: res.results || [],
-    yoda: res.yoda || [],
-  });
-});
 
-app.post('/lyrics', getLyrics, (req, res) => {
-  // console.log(res.results);
-  // res.json(res.results);
-  res.render('app', {
-    songs: res.songs || [],
-    results: res.results || [],
-    yoda: res.yoda || [],
-  });
-});
 
-app.post('/yoda', yodaSpeak, (req, res) => {
-  // res.json(res.yoda);
-  res.render('app', {
-    songs: res.songs || [],
-    results: res.results || [],
-    yoda: res.yoda || [],
-  });
-});
+
