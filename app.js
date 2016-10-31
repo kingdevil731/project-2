@@ -10,8 +10,6 @@ const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
 
 const appRouter      = require('./routes/app');
-const authRouter      = require('./routes/auth');
-const usersRouter     = require('./routes/users');
 
 const app            = express();
 const PORT           = process.argv[2] || process.env.PORT || 3000;
@@ -29,5 +27,3 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 app.use('/', appRouter);
-app.use('/auth', authRouter);
-app.use('/users', usersRouter);
