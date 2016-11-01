@@ -4,12 +4,12 @@
 const { ObjectID } = require('mongodb');
 const { getDB }    = require('../lib/dbConnect.js');
 
-const DB_CONNECTION = 'mongodb://localhost:27017/yoda';
+// const DB_CONNECTION = 'mongodb://localhost:27017/yoda';
 
 function getFavorites(req, res, next) {
   // find all favorites for your userId
   getDB().then((db) => {
-    db.collection('favorites')
+    db.collection('yoda-lyrics')
       .find({ userId: { $eq: req.session.userId } })
       .toArray((toArrErr, data) => {
         if(toArrErr) return next(toArrErr);
@@ -35,7 +35,7 @@ function saveFavorite(req, res, next) {
   insertObj.favorite.userId = req.session.userId;
 
   getDB().then((db) => {
-    db.collection('favorites')
+    db.collection('yoda-lyrics')
       .insert(insertObj.favorite, (insertErr, result) => {
         if (insertErr) return next(insertErr);
         res.saved = result;
@@ -52,7 +52,7 @@ function saveFavorite(req, res, next) {
 // the _id is sufficient enough
 function deleteFavorites(req, res, next) {
   getDB().then((db) => {
-    db.collection('favorites')
+    db.collection('yoda-lyrics')
       .findAndRemove({ _id: ObjectID(req.params.id) }, (removeErr, result) => {
         if (removeErr) return next(removeErr);
         res.removed = result;

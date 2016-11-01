@@ -14,6 +14,7 @@ const cookieParser    = require('cookie-parser');
 const indexRouter     = require('./routes/index.js');
 const authRouter      = require('./routes/auth');
 const usersRouter     = require('./routes/users');
+const favRouter       = require('./routes/favorites');
 
 const app            = express();
 const SECRET         = 'tacos3000';
@@ -45,4 +46,5 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
+app.use('/favorites', favRouter);
 

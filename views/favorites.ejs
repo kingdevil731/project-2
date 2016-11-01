@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FAVORITES</title>
+    <!-- <link rel="stylesheet" href="/css/main.css"> -->
+  </head>
+  <body>
+    <h1>Favorites</h1>
+
+    <div id="favorites-container">
+    <h2><%= user.username %>'s Favorites:</h2>
+    <% favorites.forEach((fav) => { %>
+      <div class="fav">
+        <p><%= fav.body %></p>
+        <form action="/favorites/<%= fav._id %>?_method=DELETE" method="post">
+          <input type="submit" value="Delete">
+        </form>
+      </div>
+    <% }) %>
+  </div>
+
+  </body>
+</html>
