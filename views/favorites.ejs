@@ -3,13 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>FAVORITES</title>
-    <!-- <link rel="stylesheet" href="/css/main.css"> -->
+    <link rel="stylesheet" href="/css/favorites.css">
   </head>
   <body>
-    <h1>Favorites</h1>
-
-    <div id="favorites-container">
+    <h1>yodafy</h1>
+    <form action="./users/profile">
+      <input type="submit" value="Return Home">
+    </form>
     <h2><%= user.username %>'s Favorites:</h2>
+    <div class="favorites-container">
     <% favorites.forEach((fav) => { %>
       <div class="fav">
         <p><%= fav.body %></p>

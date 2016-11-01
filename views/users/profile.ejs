@@ -10,12 +10,12 @@
 
   <header>
     <h1>yodafy</h1>
-    <h6>Welcome! <%= user.username %></h6>
+    <form action="../favorites">
+      <input type="submit" value="Favorites">
+    </form>
+    <h6>Welcome <%= user.username %>!</h6>
     <form action="/auth?_method=DELETE" method="post">
       <input type="submit" value="Logout">
-    </form>
-    <form action="../favorites">
-      <input type="submit" value="Go to favorites">
     </form>
   </header>
 
